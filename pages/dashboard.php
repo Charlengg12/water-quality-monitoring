@@ -654,7 +654,9 @@ if (!isset($user) || !is_array($user)) {
     // ✅ 2. HYBRID FETCH LOGIC (FULL BLOCK — REPLACE YOUR CURRENT ONE)
     const ESP32_URL = ESP32_IP + "/readings";
     const START_TEST_URL = ESP32_IP + '/start_test';
-    const DB_URL = "../../api_dashboard_latest.php?station_id=<?= $station_id ?>";
+    // Use unified backend readings endpoint that returns the same JSON
+    // shape as ESP32 `/readings`, backed by MySQL.
+    const DB_URL = "../../api/readings.php?station_id=<?= $station_id ?>";
 
     async function getLiveESP32Readings() {
         try {
